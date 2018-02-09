@@ -7,17 +7,13 @@
 //
 
 import UIKit
-import 
 
 class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("testing")
-        print("Bear")
-        print("sdc")
-        print("qwertyu")
+        
     }
 
     override func didReceiveMemoryWarning() {
