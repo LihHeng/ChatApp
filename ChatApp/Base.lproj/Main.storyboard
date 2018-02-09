@@ -145,6 +145,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="gsr-93-OQB"/>
+                    <connections>
+                        <outlet property="facebookImageView" destination="zpf-QB-T5O" id="K4p-ad-7ej"/>
+                        <outlet property="googleImageView" destination="X1G-j2-En6" id="ilO-jQ-QAK"/>
+                        <outlet property="passwordTextField" destination="l3W-hZ-JEV" id="fcp-R1-iaT"/>
+                        <outlet property="userTextField" destination="ART-zs-Hze" id="6bF-v3-q0a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,8 +198,17 @@
                         <viewLayoutGuide key="safeArea" id="Q0x-QI-qRJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create an Account" id="bhn-qs-sJh">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="7QR-7l-FuX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Up" id="7QR-7l-FuX">
+                            <connections>
+                                <action selector="signUpButton:" destination="0Ba-QI-dPW" id="a1h-Lz-yqE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="lcB-W5-AmU" id="zyW-uK-4ST"/>
+                        <outlet property="password1TextField" destination="461-Fd-afZ" id="a4w-ZV-yQt"/>
+                        <outlet property="password2TextField" destination="3Lq-W3-afO" id="xgF-Kd-ofb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VT5-jL-yol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

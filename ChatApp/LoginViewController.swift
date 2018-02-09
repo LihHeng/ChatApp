@@ -9,7 +9,14 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var googleImageView: UIImageView!
+    
+    @IBOutlet weak var facebookImageView: UIImageView!
+    
+    @IBOutlet weak var userTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
