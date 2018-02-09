@@ -14,6 +14,7 @@
 		4E7DC3F7202C4065008E8511 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7DC3F6202C4065008E8511 /* Assets.xcassets */; };
 		4E7DC3FA202C4065008E8511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7DC3F8202C4065008E8511 /* LaunchScreen.storyboard */; };
 		4E7DC406202D964B008E8511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E7DC405202D964B008E8511 /* GoogleService-Info.plist */; };
+		4E7DC408202DA135008E8511 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7DC407202DA135008E8511 /* Chat.swift */; };
 		CBF02712202D9D6C005B643B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF02711202D9D6C005B643B /* SignupViewController.swift */; };
 		CBF02714202D9D9C005B643B /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF02713202D9D9C005B643B /* ContactsViewController.swift */; };
 		CBF02716202D9DB6005B643B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF02715202D9DB6005B643B /* ChatViewController.swift */; };
@@ -30,6 +31,7 @@
 		4E7DC3F9202C4065008E8511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7DC3FB202C4065008E8511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E7DC405202D964B008E8511 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4E7DC407202DA135008E8511 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		7B746EAB58154E96C2318D4A /* Pods-ChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatApp/Pods-ChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8AD97793C3B23E2793679D5B /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		CBF02711202D9D6C005B643B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				CBF02715202D9DB6005B643B /* ChatViewController.swift */,
 				4E7DC3F3202C4065008E8511 /* Main.storyboard */,
 				CBF02717202DA0D9005B643B /* User.swift */,
+				4E7DC407202DA135008E8511 /* Chat.swift */,
 				4E7DC3F6202C4065008E8511 /* Assets.xcassets */,
 				4E7DC3F8202C4065008E8511 /* LaunchScreen.storyboard */,
 				4E7DC3FB202C4065008E8511 /* Info.plist */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBF02712202D9D6C005B643B /* SignupViewController.swift in Sources */,
+				4E7DC408202DA135008E8511 /* Chat.swift in Sources */,
 				CBF02714202D9D9C005B643B /* ContactsViewController.swift in Sources */,
 				CBF02718202DA0D9005B643B /* User.swift in Sources */,
 				4E7DC3F2202C4065008E8511 /* LoginViewController.swift in Sources */,
