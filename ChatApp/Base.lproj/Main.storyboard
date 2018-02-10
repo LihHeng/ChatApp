@@ -149,10 +149,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="gsr-93-OQB"/>
                     <connections>
+                        <outlet property="emailTextField" destination="ART-zs-Hze" id="DqO-99-r3s"/>
                         <outlet property="facebookImageView" destination="zpf-QB-T5O" id="K4p-ad-7ej"/>
                         <outlet property="googleImageView" destination="X1G-j2-En6" id="ilO-jQ-QAK"/>
                         <outlet property="passwordTextField" destination="l3W-hZ-JEV" id="fcp-R1-iaT"/>
-                        <outlet property="userTextField" destination="ART-zs-Hze" id="6bF-v3-q0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -365,7 +365,7 @@
         <!--Navigation Controller-->
         <scene sceneID="tTX-pG-BBX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vAQ-yv-Jsm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="vAQ-yv-Jsm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UdB-xh-W7k">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

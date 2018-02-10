@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -16,6 +17,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var password2TextField: UITextField!
     
     @IBAction func signUpButton(_ sender: Any) {
+    //auth
+    
     }
     
     override func viewDidLoad() {
@@ -23,7 +26,8 @@ class SignupViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

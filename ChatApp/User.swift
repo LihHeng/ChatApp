@@ -12,12 +12,12 @@ class User {
     
     var uid : String = ""
     var email : String = ""
-    var lastMessage : String = ""
+    var name : String = ""
     
     init(uid: String, dict: [String:Any]) {
         
         self.uid = uid
         self.email = dict["email"] as? String ?? "no email"
-        self.lastMessage = dict["lastMessage"] as? String ?? "No Message"
+        self.name = dict["name"] as? String ?? "No name"
     }
 }
