@@ -9,14 +9,21 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var googleImageView: UIImageView!
+    
+    @IBOutlet weak var facebookImageView: UIImageView!
+    
+    @IBOutlet weak var userTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func nextButton(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("testing")
-        print("Bear")
-        print("sdc")
-        print("qwertyu")
+        
     }
 
     override func didReceiveMemoryWarning() {
