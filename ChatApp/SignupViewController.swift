@@ -8,40 +8,61 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var password1TextField: UITextField!
-    
     @IBOutlet weak var password2TextField: UITextField!
     
     @IBAction func signUpButton(_ sender: Any) {
     //auth
+        signUpUser()
     
     }
     
+    var ref: DatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        ref = Database.database().reference()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func signUpUser() {
+        guard let email = emailTextField.text,
+            let password = password1TextField.text,
+            let confirmPassword = password2TextField.text else {return}
+
+        if !email.contains("@") {
+            //show error //if email not contain @
+            showAlert(withTitle: "Invalid Email format", message: "Please input valid Email")
+        } else if password.count < 7 {
+            //show error
+            showAlert(withTitle: "Invalid Password", message: "Password must contain 7 characters")
+        } else if password != confirmPassword {
+            //show error
+            showAlert(withTitle: "Password Do Not Match", message: "Password must match")
+        } else {
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                //ERROR HANDLING
+                if let validError = error {
+                    self.showAlert(withTitle: "Error", message: validError.localizedDescription)
+                }
+                
+                //HANDLE SUCESSFUL CREATION OF USER
+                if let validUser = user {
+                    //do something
+                    
+                    let userPost: [String:Any] = ["email": email, "lastMessage": ""]
+                    
+                    self.ref.child("users").child(validUser.uid).setValue(userPost)
+                    
+                    guard let navVC = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
+                    
+                    self.present(navVC, animated: true, completion: nil)
+                    print("sign up method successful")
+                }
+            })
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
