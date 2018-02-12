@@ -17,6 +17,16 @@ class ContactsViewController: UIViewController {
             tableView.dataSource = self
         }
     }
+    @IBAction func logoutBtnTapped(_ sender: Any) {
+        do{
+            try Auth.auth().signOut()
+            dismiss(animated: true, completion: nil)
+        } catch {
+            
+        }
+    }
+    
+    
     
     var ref: DatabaseReference!
     var contacts : [User] = []

@@ -265,7 +265,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l4r-s8-2RQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KwJ-vo-cXa"/>
+                    <navigationItem key="navigationItem" id="KwJ-vo-cXa">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="FnC-So-PsV">
+                            <connections>
+                                <action selector="logoutBtnTapped:" destination="9Ju-qa-KNt" id="4VR-xM-ZRr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="66w-Zg-GS2" id="Yv6-Ts-icz"/>
                     </connections>
