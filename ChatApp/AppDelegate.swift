@@ -70,9 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     //Add Facebook UIApplication
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
        
-        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        return handled
-//        return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+        let facebookHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+     
+        let googleHandled = GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+        
+           return facebookHandled || googleHandled
 
     }
 
