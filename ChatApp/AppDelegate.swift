@@ -8,26 +8,12 @@
 
 import UIKit
 import Firebase
+
 import FBSDKCoreKit
 import GoogleSignIn //1a. import
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        //3
-        if let error = error {
-        return
-    }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        // ...
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //1b. add delegate
 
@@ -39,9 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-    return true
+
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID //2.
-        GIDSignIn.sharedInstance().delegate = self //2.
         return true
     }
 
