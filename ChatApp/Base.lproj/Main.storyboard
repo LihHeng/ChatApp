@@ -110,12 +110,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73o-l4-Jub">
-                                <rect key="frame" x="127.5" y="606" width="120" height="30"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.93539565801620483" green="0.73202359676361084" blue="0.31368035078048706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="A4x-Mm-FKF"/>
+                                    <constraint firstAttribute="height" constant="50" id="R94-kP-gqd"/>
                                 </constraints>
-                                <state key="normal" title="Sign Up">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -127,10 +128,10 @@
                         <constraints>
                             <constraint firstItem="TFZ-gP-4vV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="00W-De-7Fy"/>
                             <constraint firstItem="Ptu-WW-Y0g" firstAttribute="top" secondItem="X1G-j2-En6" secondAttribute="top" id="2t1-32-ET3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="73o-l4-Jub" secondAttribute="bottom" constant="31" id="409-gp-sNR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="73o-l4-Jub" secondAttribute="bottom" id="409-gp-sNR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9kR-cs-S3S" secondAttribute="trailing" constant="20" id="6Jf-om-ukk"/>
                             <constraint firstItem="RuD-c1-V4g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BLP-tO-g2p"/>
-                            <constraint firstItem="73o-l4-Jub" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GFB-V2-IOY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="73o-l4-Jub" secondAttribute="trailing" id="F3e-6L-1Am"/>
                             <constraint firstItem="PwY-1F-Qpi" firstAttribute="top" secondItem="Ptu-WW-Y0g" secondAttribute="top" id="OqV-BO-oLG"/>
                             <constraint firstItem="RuD-c1-V4g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QQe-fZ-Nm3"/>
                             <constraint firstItem="TFZ-gP-4vV" firstAttribute="top" secondItem="RuD-c1-V4g" secondAttribute="bottom" constant="10" id="Rcf-Ia-igy"/>
@@ -138,6 +139,7 @@
                             <constraint firstItem="PwY-1F-Qpi" firstAttribute="bottom" secondItem="X1G-j2-En6" secondAttribute="bottom" id="h26-IN-Caa"/>
                             <constraint firstItem="9kR-cs-S3S" firstAttribute="top" secondItem="X1G-j2-En6" secondAttribute="top" id="nEY-hV-3d0"/>
                             <constraint firstItem="X1G-j2-En6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nRe-LN-4Ge"/>
+                            <constraint firstItem="73o-l4-Jub" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oEw-Zh-dII"/>
                             <constraint firstItem="Ptu-WW-Y0g" firstAttribute="leading" secondItem="PwY-1F-Qpi" secondAttribute="trailing" constant="8" symbolic="YES" id="oRx-SP-ucm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RuD-c1-V4g" secondAttribute="trailing" id="oig-PC-rnI"/>
                             <constraint firstItem="9kR-cs-S3S" firstAttribute="leading" secondItem="Ptu-WW-Y0g" secondAttribute="trailing" constant="20" id="uIA-KN-n3x"/>
