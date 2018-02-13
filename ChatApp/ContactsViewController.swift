@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import FBSDKLoginKit
+import GoogleSignIn
 
 class ContactsViewController: UIViewController {
     
@@ -27,8 +28,9 @@ class ContactsViewController: UIViewController {
         } catch {
               FBSDKLoginManager().logOut()
              self.dismiss(animated: true, completion: nil)
-        
         }
+        GIDSignIn.sharedInstance().signOut()
+        self.dismiss(animated: true, completion: nil)
     }
     
     
