@@ -93,6 +93,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 
                 if let validUser = user {
+                    
+                    let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+                    
+                    graphRequest?.start(completionHandler: { (connection, result, error) in
+                        if error != nil {
+                            print("error")
+                            
+                            
+                        }
+                    })
+                    
                     guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
                     
                     self.present(vc, animated: true, completion: nil)
