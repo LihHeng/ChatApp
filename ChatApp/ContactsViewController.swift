@@ -9,8 +9,11 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FBSDKLoginKit
 
 class ContactsViewController: UIViewController {
+    
+  
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -22,7 +25,9 @@ class ContactsViewController: UIViewController {
             try Auth.auth().signOut()
             dismiss(animated: true, completion: nil)
         } catch {
-            
+              FBSDKLoginManager().logOut()
+             self.dismiss(animated: true, completion: nil)
+        
         }
     }
     
@@ -36,9 +41,11 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         ref = Database.database().reference()
+        
        
     }
 
+    
     func observeFirebase() {
         
         ref.child("users").observe(.value) { (snapshot) in
