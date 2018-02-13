@@ -72,6 +72,17 @@ class LoginViewController: UIViewController {
                 
                 
                 if let validUser = user {
+                    
+                    let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+                    
+                    graphRequest?.start(completionHandler: { (connection, result, error) in
+                        if error != nil {
+                            print("error")
+                            
+                            
+                        }
+                    })
+                    
                     guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
                     
                     self.present(vc, animated: true, completion: nil)
@@ -123,6 +134,7 @@ class LoginViewController: UIViewController {
                 self.showAlert(withTitle: "Error", message: validError.localizedDescription)
             }
             if let validUser = user {
+                
                 guard let navVC = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
                 
                 self.present(navVC, animated: true, completion: nil)
