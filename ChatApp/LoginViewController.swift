@@ -9,13 +9,15 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit  //FacebookLogin PODS
-import Firebase
+import FirebaseDatabase
 import GoogleSignIn
+
 
 
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
+    var ref : DatabaseReference!
     
     @IBOutlet weak var googleBtn: GIDSignInButton! {
         didSet {
@@ -71,6 +73,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             
+            self.ref = Database.database().reference()
+            
             if let error = error {
                 print("Failed to login: \(error.localizedDescription)")
                 return
@@ -91,25 +95,37 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     return
                 }
                 
+                let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+                graphRequest?.start(completionHandler: { (connection, result, error) in
+                    if error != nil {
+                        print("error")
+                    }
+                        if let validResult  = result as? [String:Any] {
+                            let id = validResult["id"]
+                            let name = validResult["name"]
+                            let email = validResult["email"]
+                            
+                        
                 
                 if let validUser = user {
+                    let fbUser : [String:Any] = ["email" : email, "username" : name]
                     
-                    let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+                    self.ref.child("users").child(validUser.uid).setValue(fbUser)
                     
-                    graphRequest?.start(completionHandler: { (connection, result, error) in
-                        if error != nil {
-                            print("error")
-                            
-                            
-                        }
-                    })
                     
                     guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
                     
                     self.present(vc, animated: true, completion: nil)
+                   
+                            
+                            
+                        }
+                    }
+                    
+               
                 }
-            })
-        }
+                )}
+        )}
     }
     // Facebook Authentication Code
     func facebookShowEmailAddress() {
