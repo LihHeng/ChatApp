@@ -70,6 +70,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     func FsigninTapped() {
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+            
             if let error = error {
                 print("Failed to login: \(error.localizedDescription)")
                 return
@@ -89,10 +90,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     self.present(alertController, animated: true, completion: nil)
                     return
                 }
-                // Present the main view
-                if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") {
-                    UIApplication.shared.keyWindow?.rootViewController = viewController
-                    self.dismiss(animated: true, completion: nil)
+                
+                
+                if let validUser = user {
+                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as? UINavigationController else {return}
+                    
+                    self.present(vc, animated: true, completion: nil)
                 }
             })
         }
