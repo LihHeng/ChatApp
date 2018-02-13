@@ -25,11 +25,18 @@ class ChatViewController: UIViewController {
     }
     
     var ref : DatabaseReference!
-    var chats : [Chat] = []
+    var contact : User!
+    var chats : Chat!
+    var messages : [Message] = []
+    var conversationCount : Int = 0
+    var chatID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guard let sender = Auth.auth().currentUser?.uid else {return}
+        let receiver = contact.uid
+        chatID = [sender,receiver].sorted().joined()
+        ref = Database.database().reference()
         observeChat()
     }
     
@@ -37,20 +44,31 @@ class ChatViewController: UIViewController {
         guard let message = inputTextField.text else {return}
         guard let email = Auth.auth().currentUser?.email else {return}
         let timeStamp = Date().timeIntervalSince1970
+        guard let sender = Auth.auth().currentUser?.uid else {return}
+        let receiver = contact.uid
+        
+        let participants = ["sender" : sender, "receiver" : receiver]
         let userPost: [String:Any] = ["email": email, "msg" : message, "timeStamp" : timeStamp]
-        //add to database
-        self.ref.child("chat").childByAutoId().setValue(userPost)
-        //        self.ref.child("chat").remove
+
+        let chatRef = self.ref.child("chat").childByAutoId()
+        
+        self.ref.child("chats").child(chatID).child("messages").childByAutoId().setValue(userPost)
+        self.ref.child("chats").child(chatID).child("participants").setValue(participants)
+        
+//        self.ref.child("users").child(String(sender)).child("chat").child(chatRef.key).setValue(true)
+//        self.ref.child("users").child(String(receiver)).child("chat").child(chatRef.key).setValue(true)
     }
     
     func observeChat() {
-        ref.child("chat").queryOrdered(byChild: "timeStamp").observe(.childAdded) { (snapshot) in
+        
+        ref.child("chats").child(chatID).child("messages").queryOrdered(byChild: "timeStamp").observe(.childAdded) { (snapshot) in
             guard let chatDict = snapshot.value as? [String:Any] else {return}
-            let message = Chat(uid: snapshot.key, dict: chatDict)
+            //let message = Chat(uid: snapshot.key, dict: chatDict)
+            let message = Message(uid: snapshot.key, dict: chatDict)
             
             DispatchQueue.main.async {
-                self.chats.append(message)
-                let indexPath = IndexPath(row: self.chats.count - 1, section: 0)
+                self.messages.append(message)
+                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
                 self.tableView.insertRows(at: [indexPath], with: .automatic)
             }
             print(snapshot.key)
@@ -59,7 +77,7 @@ class ChatViewController: UIViewController {
         ref.child("chat").observe(.childRemoved) { (snapshot) in
             print(snapshot.key + "child remove")
         }
-        ref.child("chat").observe(.childChanged) { (snapshot) in
+        ref.child("chats").observe(.childChanged) { (snapshot) in
             print(snapshot.key + "child changed")
         }
         
@@ -68,12 +86,12 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return messages.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
-        cell.textLabel?.text = chats[indexPath.row].email
-        cell.detailTextLabel?.text = chats[indexPath.row].message
+        cell.textLabel?.text = messages[indexPath.row].email
+        cell.detailTextLabel?.text = messages[indexPath.row].message
         return cell
     }
 }

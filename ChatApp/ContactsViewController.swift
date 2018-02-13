@@ -19,6 +19,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
+            tableView.delegate = self
         }
     }
     @IBAction func logoutBtnTapped(_ sender: Any) {
@@ -32,9 +33,7 @@ class ContactsViewController: UIViewController {
         GIDSignIn.sharedInstance().signOut()
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
+  
     var ref: DatabaseReference!
     var contacts : [User] = []
     
@@ -43,7 +42,7 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         ref = Database.database().reference()
-        
+        observeFirebase()
        
     }
 
@@ -74,24 +73,15 @@ class ContactsViewController: UIViewController {
             
             print("testing")
         }
-        
-        
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
 
-   
+    }
 
 }
 
 extension ContactsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        print(contacts.count)
+        return contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,3 +93,15 @@ extension ContactsViewController : UITableViewDataSource {
         return cell
     }
 }
+
+extension ContactsViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contact = contacts[indexPath.row]
+
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {return}
+        vc.contact = contact
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
