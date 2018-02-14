@@ -36,6 +36,7 @@ class ContactsViewController: UIViewController {
   
     var ref: DatabaseReference!
     var contacts : [User] = []
+    var messages : [Message] = []
     
     
     override func viewDidLoad() {
@@ -87,8 +88,9 @@ extension ContactsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.textLabel?.text = contacts[indexPath.row].name
-        cell.detailTextLabel?.text = contacts[indexPath.row].email
+        cell.textLabel?.text = contacts[indexPath.row].email
+        cell.detailTextLabel?.text = contacts[indexPath.row].name
+//        cell.detailTextLabel?.text = messages[indexPath.row].lastMessage
         
         return cell
     }
