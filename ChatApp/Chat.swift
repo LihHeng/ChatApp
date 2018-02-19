@@ -28,9 +28,7 @@ class Message {
     var uid : String = ""
     var email : String = ""
     var message : String = ""
-    var timeStamp : Double = 0
-//    var sender : String = ""
-//    var receiver : String = ""
+    var timeStamp : NSNumber = 0
     
     init(uid: String, dict: [String:Any]) {
         
@@ -38,10 +36,16 @@ class Message {
         //?? set default value if nothing is found
         email = dict["email"] as? String ?? "no email"
         message = dict["msg"] as? String ?? "no msg"
-        timeStamp = dict["timeStamp"] as? Double ?? 0
-//        sender = dict["sender"] as? String ?? "no sender"
-//        receiver = dict["receiver"] as? String ?? "no receiver"
+        timeStamp = dict["timeStamp"] as? NSNumber ?? 0
+
         
-        message += "(\(timeStamp))"
+//        message += "(\(timeStamp))"
+        
+        let seconds = timeStamp.doubleValue
+        let timestampDate = NSDate(timeIntervalSince1970: seconds)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss a"
+        
+        message += "(\(dateFormatter.string(from: timestampDate as Date)))"
     }
 }

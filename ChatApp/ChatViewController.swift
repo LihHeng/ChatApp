@@ -28,7 +28,6 @@ class ChatViewController: UIViewController {
     var contact : User!
     var chats : Chat!
     var messages : [Message] = []
-    var conversationCount : Int = 0
     var chatID = ""
     
     override func viewDidLoad() {
@@ -44,19 +43,23 @@ class ChatViewController: UIViewController {
         guard let message = inputTextField.text else {return}
         guard let email = Auth.auth().currentUser?.email else {return}
         let timeStamp = Date().timeIntervalSince1970
+        
         guard let sender = Auth.auth().currentUser?.uid else {return}
         let receiver = contact.uid
         
         let participants = ["sender" : sender, "receiver" : receiver]
         let userPost: [String:Any] = ["email": email, "msg" : message, "timeStamp" : timeStamp]
 
-        let chatRef = self.ref.child("chat").childByAutoId()
+
         
         self.ref.child("chats").child(chatID).child("messages").childByAutoId().setValue(userPost)
         self.ref.child("chats").child(chatID).child("participants").setValue(participants)
+        self.ref.child("chats").child(chatID).child("messages").child("lastMessage").setValue(message)
+
+        //empty the textField after click send
+        self.inputTextField = nil
         
-        
-        
+//        let chatRef = self.ref.child("chat").childByAutoId()
 //        self.ref.child("users").child(String(sender)).child("chat").child(chatRef.key).setValue(true)
 //        self.ref.child("users").child(String(receiver)).child("chat").child(chatRef.key).setValue(true)
     }
@@ -92,8 +95,9 @@ extension ChatViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
-        cell.textLabel?.text = messages[indexPath.row].email
-        cell.detailTextLabel?.text = messages[indexPath.row].message
+        
+        cell.textLabel?.text = messages[indexPath.row].message
+        cell.detailTextLabel?.text = messages[indexPath.row].email
         return cell
     }
 }
