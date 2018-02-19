@@ -173,6 +173,7 @@ extension LoginViewController : GIDSignInDelegate {
         if let error = error {return}
         guard let authentication = user.authentication else { return }
         let credentialG = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
         // Sign in w Google
         Auth.auth().signIn(with: credentialG) { (user, error) in
             if let validError = error {

@@ -55,6 +55,8 @@ class ChatViewController: UIViewController {
         self.ref.child("chats").child(chatID).child("messages").childByAutoId().setValue(userPost)
         self.ref.child("chats").child(chatID).child("participants").setValue(participants)
         
+        
+        
 //        self.ref.child("users").child(String(sender)).child("chat").child(chatRef.key).setValue(true)
 //        self.ref.child("users").child(String(receiver)).child("chat").child(chatRef.key).setValue(true)
     }
